@@ -1,0 +1,148 @@
+\documentclass[a4paper,dvipsnames]{scrartcl}
+\usepackage{listings}
+\lstset{language=Java}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{pdflscape}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{polynom}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{forloop}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{fancybox}
+\usepackage{tikz}
+\usepackage{nicematrix}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{comment}
+\usepackage{eurosym}
+% \usepackage{ marvosym }
+\usepackage{adjustbox}
+\usepackage{listings}
+\usepackage[noend]{algpseudocode}
+\usepackage{stmaryrd}
+\usepackage {dsfont}
+\usepackage{tabstackengine} %polynomial division
+\usepackage{forest} %trees
+\usepackage{xcolor}
+\usepackage{graphicx,amsmath,float,cancel,multirow,enumerate,ngerman}
+\usepackage{tabstackengine} %polynomial division
+\input kvmacros
+\stackMath
+\newsavebox\tempbox
+\newlength\templen
+\def\rl#1{%
+  \sbox\tempbox{$#1$}%
+  \setlength\templen{\wd\tempbox}%
+  \llap{\rule{1.5pt}{.1ex}}\rule{\templen}{.1ex}\rlap{\rule{1.5pt}{.1ex}}}
+\setstacktabulargap{0pt}
+%Größe der Ränder setzen
+\geometry{a4paper,left=3cm, right=3cm, top=3cm, bottom=3cm}
+
+\fancypagestyle{firstpage}
+{
+%Kopf- und Fußzeile
+  % 
+  \fancyhead[L]{Tutor: \TUTOR}
+  \fancyhead[C]{\COURSE}
+  \fancyhead[R]{\today}
+}
+\pagestyle {fancy}
+\fancyhead[L]{\COURSE}
+\fancyhead[R]{Abgabe \NUMBER}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{Seite \thepage /\pageref*{LastPage}}
+%Formatierung der Überschrift, hier nichts ändern
+\def\header#1#2{
+  \begin{center}
+    {\Large Aufgabenblatt #1}\\
+    {(Due #2)}
+  \end{center}
+}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.665,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeorange}{rgb}{1,0.5,0.25}
+\definecolor{backcolourg}{rgb}{0.96,0.96,0.94}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{codeorange},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codegreen},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+\lstset{style=mystyle}
+
+%Definition der Punktetabelle, hier nichts ändern
+\newcounter{punktelistectr}
+\newcounter{punkte}
+\newcommand{\punkteliste}[2]{%
+  \setcounter{punkte}{#2}%
+  \addtocounter{punkte}{-#1}%
+  \stepcounter{punkte}%<-- also punkte = m-n+1 = Anzahl Spalten[1]
+  \begin{center}%
+  \begin{tabularx}{\linewidth}[]{@{}*{\thepunkte}{>{\centering\arraybackslash} X|}@{}>{\centering\arraybackslash}X}
+      \forloop{punktelistectr}{#1}{\value{punktelistectr} < #2} %
+      {%
+        \thepunktelistectr &
+      }
+      #2 &  $\Sigma$ \\
+      \hline
+      \forloop{punktelistectr}{#1}{\value{punktelistectr} < #2} %
+      {%
+        &
+      } &\\
+      \forloop{punktelistectr}{#1}{\value{punktelistectr} < #2 } %
+      {
+        &
+      } &\\
+      \end{tabularx}
+  \end{center}
+}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\toppage}{
+\thispagestyle{firstpage}
+\begin{tabularx}{\linewidth}{m{0.4 \linewidth}X}
+  \begin{minipage}{\linewidth}
+    \STUDENTA\\
+    \STUDENTB\\
+  \end{minipage} & \begin{minipage}{\linewidth}
+    \punkteliste{1}{\EXERCISES}
+  \end{minipage}\\
+\end{tabularx}
+
+\header{Nr. \NUMBER}{\DEADLINE}
+\setlength{\parindent}{0em} 
+}
