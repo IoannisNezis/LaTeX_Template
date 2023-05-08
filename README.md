@@ -11,7 +11,7 @@ Just add your credentials and you are good to go.
 - Select `blatt-01.tex` as your Maindocument in the menu.
 	- This has to be changed for every Exercise as well.
 
-## I you build local
+## If you build local
 - use Linux
 - install `latexmk`
 - run `make`
